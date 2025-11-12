@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Details</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    img {
+      width: 300px;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 0 10px cyan;
+    }
+
+    a {
+      color: cyan;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .details {
+      max-width: 700px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html">← Back to Search</a>
+  <div class="details"></div>
+
+  <script>
+    const detailsContainer = document.querySelector('.details');
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    async function getDetails() {
+      try {
+        const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
+        const show = await res.json();
+        renderDetails(show);
+      } catch (err) {
+        detailsContainer.innerHTML = '<p>Error loading movie details.</p>';
+      }
+    }
+
+    function renderDetails(show) {
+      const poster = show.image ? show.image.original : 'https://via.placeholder.com/300x400?text=No+Image';
+      const genres = show.genres.length ? show.genres.join(', ') : 'Unknown';
+      detailsContainer.innerHTML = `
+        <h1>${show.name}</h1>
+        <img src="${poster}" alt="${show.name}">
+        <p><strong>Rating:</strong> ${show.rating.average || 'N/A'}</p>
+        <p><strong>Genres:</strong> ${genres}</p>
+        <p><strong>Premiered:</strong> ${show.premiered || 'Unknown'}</p>
+        <p><strong>Language:</strong> ${show.language}</p>
+        <p>${show.summary}</p>
+      `;
+    }
+
+    getDetails();
+  </script>
+</body>
+</html>

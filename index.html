@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Search App</title>
+  <style>
+    body {
+      min-width: 100vw;
+      min-height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    form {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin: 20px;
+    }
+
+    input {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      width: 300px;
+    }
+
+    button {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: rgb(0, 247, 255);
+      color: black;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .image-container {
+      width: 90%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px auto;
+    }
+
+    .movie-card {
+      background-color: #111;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00f;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+
+    .movie-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .movie-info {
+      padding: 10px;
+    }
+
+    .movie-info h3 {
+      margin: 5px 0;
+      color: #00f7ff;
+    }
+
+    .movie-info p {
+      margin: 3px 0;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    a.details-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: #00f7ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.details-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Movie Search API</h1>
+  <form>
+    <input type="text" class="Search-input" placeholder="Search for movie...">
+    <button class="Search">Search</button>
+  </form>
+
+  <div class="image-container"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
